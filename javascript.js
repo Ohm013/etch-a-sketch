@@ -4,10 +4,11 @@ const container = document.querySelector('#container');
 function makeDivs (numDivs) {
     for (i = 0; i < numDivs ; i++ ){
     const div = document.createElement('div'); 
-    div.style.cssText = "border: 1px solid black ; height: 25px ; width: 25px ;"; 
+    div.classList.add('squares'); 
+    div.style.cssText = "border: 1px solid black ; height: 30px ; width: 30px ;"; 
     container.appendChild(div);
 } 
 
 }
-makeDivs(32) ; 
+makeDivs(256) ; 
 
