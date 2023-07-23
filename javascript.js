@@ -1,6 +1,7 @@
 const container = document.querySelector('#container');
 const rainbow = document.querySelector('#rainbow');
 const restart = document.querySelector("#restart");
+const clear =document.querySelector("#clear"); 
 
 
 
@@ -33,9 +34,12 @@ makeDivs();
 //make button to clear grid.
 // make button to change size of grid.
 
+
+clear.addEventListener('click', white);
+
 function white () { //resets all squares to white when reset is clicked
-  const boxes = document.querySelectorAll('.squares') ;
-    boxes.forEach(square => square.style.background = "white");
+  const squares = document.querySelectorAll('.squares') ;
+    squares.forEach(square => square.style.background = "white");
 }
 
 
