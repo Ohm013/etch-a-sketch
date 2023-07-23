@@ -3,13 +3,7 @@ const rainbow = document.querySelector('#rainbow');
 const restart = document.querySelector("#restart");
 const clear =document.querySelector("#clear"); 
 
-
-
-
-
 function makeDivs (numDivs) {
-      
-
 
   restart.addEventListener('click', function(e) {
     white(); 
@@ -30,14 +24,11 @@ function makeDivs (numDivs) {
 
 makeDivs(); 
 
-
-//make button to clear grid.
-// make button to change size of grid.
-
+// make button to change size of grid
 
 clear.addEventListener('click', white);
 
-function white () { //resets all squares to white when reset is clicked
+function white () { //resets all squares to white when clear is clicked
   const squares = document.querySelectorAll('.squares') ;
     squares.forEach(square => square.style.background = "white");
 }
@@ -55,25 +46,6 @@ container.addEventListener('mouseover', function(e) {
 }
 })
 
-
-
-
-
-
-
-
-//function startColor () {
-  //  div.addEventListener('mouseover', function(e)  {
-    //e.target.style.background = 'black';        
-//})};
-
-
-
-
-
-
-
-
 function rgb () {
   rainbow.addEventListener('click', beginrgb); 
   console.log(rgbColor); 
@@ -84,10 +56,12 @@ function beginrgb() {
     let y = Math.floor(Math.random() *256);
     let z = Math.floor(Math.random() *256);
     var rgbColor = "rgb("+ x +", "+ y +", "+ z + ")"; 
-    
-    container.addEventListener('mouseover', function(e) {
-      if (e.target.matches = "div.squares") {
-        e.target.style.background = rgbColor ;
-      }
-  });
-};
+    return rgbColor ; 
+  }
+
+
+container.addEventListener('mouseover', function(e) {  //rainbow color event listener
+  if (e.target.matches = "div.squares") {
+    e.target.style.background = beginrgb() ;
+  };
+});
