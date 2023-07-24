@@ -1,7 +1,10 @@
 const container = document.querySelector('#container');
 const rainbow = document.querySelector('#rainbow');
 const restart = document.querySelector("#restart");
-const clear =document.querySelector("#clear"); 
+const clear = document.querySelector("#clear"); 
+const black = document.querySelector("#black"); 
+
+//make function to start game off with 16x16 which then can be changed with the button
 
 function makeDivs (numDivs) {
 
@@ -26,42 +29,44 @@ makeDivs();
 
 // make button to change size of grid
 
+
+
+
+
 clear.addEventListener('click', white);
 
 function white () { //resets all squares to white when clear is clicked
-  const squares = document.querySelectorAll('.squares') ;
+    const squares = document.querySelectorAll('.squares') ;
     squares.forEach(square => square.style.background = "white");
 }
 
+
+black.addEventListener('click', dark) ; 
 
 function changeColor (target) {
   target.style.backgroundColor = "black" ; 
 }
 
-container.addEventListener('mouseover', function(e) {
-    target = e.target ;
+function dark () {
+  container.addEventListener('mouseover', function(e) {
+      target = e.target ;
 
-    if (target.matches = "div.squares") {
-      changeColor(target) ; 
+      if (target.matches = "div.squares") {
+        changeColor(target) ; 
+}});
+};
+  
+
+rainbow.addEventListener('click',beginrgb); 
+
+function beginrgb() { 
+   //rainbow button not working again
+    container.addEventListener('mouseover', function(e) {  //rainbow color event listener
+      if (e.target.matches = "div.squares") {
+        let x = Math.floor(Math.random() *256);
+        let y = Math.floor(Math.random() *256);
+        let z = Math.floor(Math.random() *256);
+        var rgbColor = `rgb(${x},${y}, ${z})`; 
+        e.target.style.background = rgbColor ; 
+  }});
 }
-})
-
-function rgb () {
-  rainbow.addEventListener('click', beginrgb); 
-  console.log(rgbColor); 
-}
-
-function beginrgb() {
-    let x = Math.floor(Math.random() *256);
-    let y = Math.floor(Math.random() *256);
-    let z = Math.floor(Math.random() *256);
-    var rgbColor = "rgb("+ x +", "+ y +", "+ z + ")"; 
-    return rgbColor ; 
-  }
-
-
-container.addEventListener('mouseover', function(e) {  //rainbow color event listener
-  if (e.target.matches = "div.squares") {
-    e.target.style.background = beginrgb() ;
-  };
-});
