@@ -3,6 +3,7 @@ const rainbow = document.querySelector('#rainbow');
 const restart = document.querySelector("#restart");
 const clear = document.querySelector("#clear"); 
 const black = document.querySelector("#black"); 
+const eraser = document.querySelector("#eraser");
 
 //make function to start game off with 16x16 which then can be changed with the button
 
@@ -29,9 +30,14 @@ makeDivs();
 
 // make button to change size of grid
 
+eraser.addEventListener('click', erase);
 
+function erase () {
+  container.addEventListener('mouseover', function(e) {
+    e.target.style.background = "white";
+  })
 
-
+}
 
 clear.addEventListener('click', white);
 
@@ -60,13 +66,13 @@ function dark () {
 rainbow.addEventListener('click',beginrgb); 
 
 function beginrgb() { 
-   //rainbow button not working again
     container.addEventListener('mouseover', function(e) {  //rainbow color event listener
       if (e.target.matches = "div.squares") {
         let x = Math.floor(Math.random() *256);
         let y = Math.floor(Math.random() *256);
         let z = Math.floor(Math.random() *256);
         var rgbColor = `rgb(${x},${y}, ${z})`; 
-        e.target.style.background = rgbColor ; 
-  }});
-}
+        e.target.style.background = rgbColor; 
+    }});
+ };
+  
