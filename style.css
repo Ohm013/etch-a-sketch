@@ -29,6 +29,10 @@ h1 {
     border: 3px solid rgb(17, 73, 51) ; 
 
 }
+
+.options:hover {
+    background-color: rgb(183, 181, 178) ;
+}
 #container {
     display: flex;
     flex-wrap: wrap;
