@@ -1,34 +1,58 @@
+// Issue #1 : When coloring, the marker would color the div squares, the whole container, and if mouse on the page it would make the whole whole page black
+
+// Solution #1: Restricted the mouseover event to only container and using target.matches >> container.addEventListener('mouseover', function(e) { 
+  //target = e.target ;
+
+   // if (target.matches = "div.squares") {
+   //   changeColor(target) ; 
+
+// Issue #2:  When clicking on the button to make the grid it makes a new one on top of the old one looking weird need to fix the issue so it deletes the old one and keeps the new requested grid layout. //
+
+// Solution #2 Added >>> container.textContent = ""; <<< to update the grid box to blank every time the function is called.
+
+
+// Issue #3: When resizing grid, it resizes improperly. Leaves a few squares on the last row by themselves.
+
+
+
 const container = document.querySelector('#container');
 const rainbow = document.querySelector('#rainbow');
-const restart = document.querySelector("#restart");
+const gridSize = document.querySelector("#gridSize");
 const clear = document.querySelector("#clear"); 
 const black = document.querySelector("#black"); 
 const eraser = document.querySelector("#eraser");
 
+
 //make function to start game off with 16x16 which then can be changed with the button
+function defaultGrid (size){
+size = 256
+for (i = 0; i < 256  ; i++ ){
+  const div = document.createElement('div'); 
+  div.classList.add('squares'); 
+  div.style.cssText = `border: .3px solid black; width: 38px ; height 38px`; 
+  container.appendChild(div);
+}};
 
-function makeDivs (numDivs) {
+defaultGrid() ; 
 
-  restart.addEventListener('click', function(e) {
+gridSize.addEventListener('click', function(e) {
     white(); 
-    let question = prompt("How many squares on each side? (Enter only one number) "); 
-    numDivs = question ** 2; 
-    let eachSquare = 384000 / (question **2)  // area of each square
-    let wL = Math.sqrt(eachSquare);  // gets width & length of each square
- 
+    container.textContent = ""; 
+    question = prompt("How many squares on each side? (Enter only one number) "); 
+    let numDivs = (question ** 2) ; 
+    let eachSquare = 384000 / (numDivs) ;   // area of each square
+    let wL = Math.round((Math.sqrt(eachSquare)));  // gets width & length of each square
     for (i = 0; i < numDivs ; i++ ){
           numDivs = question ** 2; 
           const div = document.createElement('div'); 
           div.classList.add('squares'); 
-          div.style.cssText = `border: 1px solid black; width: ${wL}px ; height ${wL}px`; 
-          container.appendChild(div);
-       };
-   });
-  };
+          div.style.cssText = `border: .3px solid black; width: ${wL}px ; height ${wL}px`; 
+          container.appendChild(div)
+      };
+});
 
-makeDivs(); 
+//try using display:grid on css and work from there
 
-// make button to change size of grid
 
 eraser.addEventListener('click', erase);
 
