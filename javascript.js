@@ -3,17 +3,14 @@
 // Solution #1: Restricted the mouseover event to only container and using target.matches >> container.addEventListener('mouseover', function(e) { 
   //target = e.target ;
 
-   // if (target.matches = "div.squares") {
+   // if (target.matches = "div.squares") 
    //   changeColor(target) ; 
 
 // Issue #2:  When clicking on the button to make the grid it makes a new one on top of the old one looking weird need to fix the issue so it deletes the old one and keeps the new requested grid layout. //
 
 // Solution #2 Added >>> container.textContent = ""; <<< to update the grid box to blank every time the function is called.
 
-
 // Issue #3: When resizing grid, it resizes improperly. Leaves a few squares on the last row by themselves.
-
-
 
 const container = document.querySelector('#container');
 const rainbow = document.querySelector('#rainbow');
@@ -29,31 +26,53 @@ size = 256
 for (i = 0; i < 256  ; i++ ){
   const div = document.createElement('div'); 
   div.classList.add('squares'); 
-  div.style.cssText = `border: .3px solid black; width: 38px ; height 38px`; 
+  div.style.cssText = `border: .3px solid black; width: 35.5px ; height 35.5px`; 
   container.appendChild(div);
 }};
 
 defaultGrid() ; 
 
+//try two loops(nested loop) for gridSize function
+
+
+
+
 gridSize.addEventListener('click', function(e) {
     white(); 
-    container.textContent = ""; 
+    container.textContent = ""; //resets the container to blank 
     question = prompt("How many squares on each side? (Enter only one number) "); 
-    let numDivs = (question ** 2) ; 
-    let eachSquare = 384000 / (numDivs) ;   // area of each square
-    let wL = Math.round((Math.sqrt(eachSquare)));  // gets width & length of each square
-    for (i = 0; i < numDivs ; i++ ){
-          numDivs = question ** 2; 
-          const div = document.createElement('div'); 
+      if (question > 100) {
+        alert ("Number must be 100 or less"); 
+      }
+      for (let i = 0 ; i < question ; i++) {
+        
+        
+        for (let j = 0 ; j < question; j++){
+          const div = document.createElement('div');
           div.classList.add('squares'); 
-          div.style.cssText = `border: .3px solid black; width: ${wL}px ; height ${wL}px`; 
-          container.appendChild(div)
-      };
-});
+          div.style.cssText = `border: .3px solid black;`
+          container.appendChild(div); 
+       
+      }
+      
+}
 
-//try using display:grid on css and work from there
+})
 
 
+
+
+//let numDivs = (question ** 2) ; 
+//let eachSquare = 360000 / (numDivs) ;   // area of each square
+//let wL = Math.floor((Math.sqrt(eachSquare)));  // gets width & length of each square
+//for (let i = 0; i < numDivs ; i++ ){
+  //    numDivs = question ** 2; 
+    //  const div = document.createElement('div'); 
+      //div.classList.add('squares'); 
+      //div.style.cssText = `border: .3px solid black; width: ${wL}px ; height ${wL}px`; 
+      //container.appendChild(div)
+ // };
+//});
 eraser.addEventListener('click', erase);
 
 function erase () {
