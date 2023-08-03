@@ -34,9 +34,6 @@ defaultGrid() ;
 
 //try two loops(nested loop) for gridSize function
 
-
-
-
 gridSize.addEventListener('click', function(e) {
     white(); 
     container.textContent = ""; //resets the container to blank 
@@ -45,22 +42,21 @@ gridSize.addEventListener('click', function(e) {
         alert ("Number must be 100 or less"); 
       }
       for (let i = 0 ; i < question ; i++) {
-        
+        const div = document.createElement('div');
+        div.classList.add('squares'); 
+        div.style.cssText = `border: .3px solid black;`
+        container.appendChild(div); 
         
         for (let j = 0 ; j < question; j++){
-          const div = document.createElement('div');
-          div.classList.add('squares'); 
-          div.style.cssText = `border: .3px solid black;`
-          container.appendChild(div); 
-       
+          const column = document.createElement('div');
+          column.classList.add('cubes'); 
+          column.style.cssText = `border: .3px solid black;`
+          container.appendChild(column); 
       }
       
 }
 
 })
-
-
-
 
 //let numDivs = (question ** 2) ; 
 //let eachSquare = 360000 / (numDivs) ;   // area of each square
@@ -86,6 +82,8 @@ clear.addEventListener('click', white);
 
 function white () { //resets all squares to white when clear is clicked
     const squares = document.querySelectorAll('.squares') ;
+    const cubes = document.querySelectorAll('cubes'); 
+    cubes.forEach(cube => cube.style.background = "white");
     squares.forEach(square => square.style.background = "white");
 }
 
@@ -100,7 +98,7 @@ function dark () {
   container.addEventListener('mouseover', function(e) {
       target = e.target ;
 
-      if (target.matches = "div.squares") {
+      if ((target.matches = "div.squares") || (target.matches = "div.cubes")) {
         changeColor(target) ; 
 }});
 };
@@ -110,7 +108,7 @@ rainbow.addEventListener('click',beginrgb);
 
 function beginrgb() { 
     container.addEventListener('mouseover', function(e) {  //rainbow color event listener
-      if (e.target.matches = "div.squares") {
+      if ((e.target.matches = "div.squares") || (e.target.matches = "div.cubes")) {
         let x = Math.floor(Math.random() *256);
         let y = Math.floor(Math.random() *256);
         let z = Math.floor(Math.random() *256);
