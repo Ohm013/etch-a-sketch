@@ -10,7 +10,7 @@
 
 // Solution #2 Added >>> container.textContent = ""; <<< to update the grid box to blank every time the function is called.
 
-// Issue #3: When resizing grid, it resizes improperly. Leaves a few squares on the last row by themselves.
+// Issue #3: When resizing grid, it resizes improperly. Leaves a few squares on the last row by themselves. Tried "box-sizing : border-box"in CSS and that solved some of the grids but not all bc border-box means it takes into account the border of each cube when making the size of it
 
 const container = document.querySelector('#container');
 const rainbow = document.querySelector('#rainbow');
@@ -21,54 +21,46 @@ const eraser = document.querySelector("#eraser");
 
 
 //make function to start game off with 16x16 which then can be changed with the button
-function defaultGrid (size){
-size = 256
-for (i = 0; i < 256  ; i++ ){
-  const div = document.createElement('div'); 
-  div.classList.add('squares'); 
-  div.style.cssText = `border: .3px solid black; width: 35.5px ; height 35.5px`; 
-  container.appendChild(div);
-}};
+//function defaultGrid (size){
+//size = 256
+//for (i = 0; i < 256  ; i++ ){
+ // let dimension = Math.floor((Math.sqrt(360000 / 256)));
+  //const div = document.createElement('div'); 
+  //div.classList.add('squares'); 
+  //div.style.cssText = `border: .3px solid black; width: ${dimension}px ; height ${dimension}px`; 
+  //container.appendChild(div);
+//}};
 
-defaultGrid() ; 
 
-//try two loops(nested loop) for gridSize function
 
-gridSize.addEventListener('click', function(e) {
-    white(); 
-    container.textContent = ""; //resets the container to blank 
-    question = prompt("How many squares on each side? (Enter only one number) "); 
-      if (question > 100) {
-        alert ("Number must be 100 or less"); 
-      }
-      for (let i = 0 ; i < question ; i++) {
-        const div = document.createElement('div');
-        div.classList.add('squares'); 
-        div.style.cssText = `border: .3px solid black;`
-        container.appendChild(div); 
-        
-        for (let j = 0 ; j < question; j++){
-          const column = document.createElement('div');
-          column.classList.add('cubes'); 
-          column.style.cssText = `border: .3px solid black;`
-          container.appendChild(column); 
-      }
-      
-}
+let rows = document.createElement('div');
+let columns = document.createElement('div');
 
-})
+function newGrid () {
+        white(); 
+        container.textContent = ""; //resets the container to blank 
+        let question = prompt("How many squares on each side? (Enter only one number) "); 
+          if (question > 100) {
+            alert ("Number must be 100 or less"); 
+        } else if (question <= 100) {
+          for (let i = 0 ; i < question ; i++) {
+            rows = document.createElement('div');
+            rows.classList.add('rows'); 
+            rows.style.cssText = `border: .1px solid black`;
+            container.appendChild(rows); 
+            
+            for (let j = 0 ; j < question; j++){
+              columns = document.createElement('div');
+              columns.classList.add('columns'); 
+              columns.style.cssText =  `border: .1px solid black`; 
+              rows.appendChild(columns); 
+           };
+       };
+   };
+};
+  
+gridSize.addEventListener('click', newGrid);
 
-//let numDivs = (question ** 2) ; 
-//let eachSquare = 360000 / (numDivs) ;   // area of each square
-//let wL = Math.floor((Math.sqrt(eachSquare)));  // gets width & length of each square
-//for (let i = 0; i < numDivs ; i++ ){
-  //    numDivs = question ** 2; 
-    //  const div = document.createElement('div'); 
-      //div.classList.add('squares'); 
-      //div.style.cssText = `border: .3px solid black; width: ${wL}px ; height ${wL}px`; 
-      //container.appendChild(div)
- // };
-//});
 eraser.addEventListener('click', erase);
 
 function erase () {
@@ -81,10 +73,11 @@ function erase () {
 clear.addEventListener('click', white);
 
 function white () { //resets all squares to white when clear is clicked
-    const squares = document.querySelectorAll('.squares') ;
-    const cubes = document.querySelectorAll('cubes'); 
+    const squares = document.querySelectorAll('.rows') ;
+    const cubes = document.querySelectorAll('squares'); 
     cubes.forEach(cube => cube.style.background = "white");
     squares.forEach(square => square.style.background = "white");
+    container.style.cssText = "background : white" ; 
 }
 
 
@@ -98,7 +91,7 @@ function dark () {
   container.addEventListener('mouseover', function(e) {
       target = e.target ;
 
-      if ((target.matches = "div.squares") || (target.matches = "div.cubes")) {
+      if ((target.matches = "div.rows") || (target.matches = "div.columns")) {
         changeColor(target) ; 
 }});
 };
@@ -108,7 +101,7 @@ rainbow.addEventListener('click',beginrgb);
 
 function beginrgb() { 
     container.addEventListener('mouseover', function(e) {  //rainbow color event listener
-      if ((e.target.matches = "div.squares") || (e.target.matches = "div.cubes")) {
+      if ((e.target.matches = "div.rows") || (e.target.matches = "div.columns")) {
         let x = Math.floor(Math.random() *256);
         let y = Math.floor(Math.random() *256);
         let z = Math.floor(Math.random() *256);
