@@ -17,8 +17,8 @@
 // Issue #4 : The container background would remain the color it was previously colored when grid sizing and changing colors
 // Solution #4 : added "container.style.background = "white";" when switchin between colors and grid resize 
 
-//Issue #5: When coloring, if mouse hovers over the side borders it colors the whole row the chosen color but doesn't do it when I clear and begin coloring again. Only when page is refreshed at the first 16 x 16. How to not make it color whole row?
-// Solution #5 : 
+//Issue #5: When coloring, if mouse hovers over the side borders or moves fast it colors the whole row the chosen color but doesn't do it when I clear and begin coloring again. Only when page is refreshed at the first 16 x 16. How to not make it color whole row?
+// Solution #5 : Removed the javascript css for the "row.style.css = border 1px solid black" for column as well
 
 
 const container = document.querySelector('#container');
@@ -39,20 +39,18 @@ function newGrid (size) {
           for (let i = 0 ; i < size ; i++) {
             rows = document.createElement('div');
             rows.classList.add('rows'); 
-            rows.style.cssText = `border: .1px solid black`;
             container.appendChild(rows); 
             
             for (let j = 0 ; j < size; j++){
               columns = document.createElement('div');
               columns.classList.add('columns'); 
-              columns.style.cssText =  `border: .1px solid black`; 
               rows.appendChild(columns); 
            };
        };
    };
 };
 
-newGrid(16);
+newGrid(16); //Starts game off with 16 x 16
 
 
 gridSize.addEventListener('click', () => {
@@ -74,10 +72,9 @@ clear.addEventListener('click', white);
 
 function white () { //resets all squares to white when clear is clicked
     container.style.background = "white"; 
-    const rows = document.querySelectorAll('.rows') ;
-    const columns = document.querySelectorAll('.columns'); 
-    rows.forEach(row => row.style.background = "white");
-    columns.forEach(column => column.style.background = "white");
+    const columns = document.querySelectorAll('.columns') ;
+    columns.forEach(column => column.style.background = "");
+    
 }
 
 
