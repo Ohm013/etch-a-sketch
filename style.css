@@ -1,6 +1,10 @@
 body {
     background-color: rgb(103, 187, 155);
+    background: url("https://e1.pxfuel.com/desktop-wallpaper/212/425/desktop-wallpaper-website-backgrounds-cool-simple.jpg") no-repeat center center fixed; ;
+   
+    background-size: cover; 
 }
+
 
 .buttons {
     display: flex;
@@ -42,6 +46,7 @@ h1 {
     height: 600px;
     margin-top: 30px ; 
     border: 7px solid rgb(28, 27, 27) ; 
+    
 }
 
 .rows,
