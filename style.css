@@ -1,9 +1,7 @@
 body {
     background-color: rgb(103, 187, 155);
-    background: url("https://e1.pxfuel.com/desktop-wallpaper/212/425/desktop-wallpaper-website-backgrounds-cool-simple.jpg") no-repeat center center fixed; ;
-   
+    background: url("https://e1.pxfuel.com/desktop-wallpaper/212/425/desktop-wallpaper-website-backgrounds-cool-simple.jpg") no-repeat center center fixed; 
     background-size: cover; 
-    
 
 }
 
@@ -44,8 +42,8 @@ h1 {
     flex-direction: column;
     border-radius: 10px;
     background-color: white ;
-    width: 650px ;
-    height: 600px;
+    width: 550px ;
+    height: 550px;
     margin-top: 30px ; 
     border: 7px solid rgb(28, 27, 27) ; 
     
