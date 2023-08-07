@@ -3,8 +3,7 @@ body {
     background: url("https://e1.pxfuel.com/desktop-wallpaper/212/425/desktop-wallpaper-website-backgrounds-cool-simple.jpg") no-repeat center center fixed; ;
    
     background-size: cover; 
-    justify-content: center ;
-
+    
 
 }
 
@@ -13,6 +12,7 @@ body {
     display: flex;
     justify-content: space-around;
     margin-top: 35px ;
+    margin-right: 350px ; 
     width: 800px; 
 }
 .page {
